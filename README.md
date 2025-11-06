@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Viajero Rent Car — Alquiler de vehículos</title>
+  <meta name="description" content="Viajero Rent Car - Reserva tu vehículo fácilmente por WhatsApp. Recogida en aeropuerto, alquiler por días. La Romana, RD." />
+  <style>
+    :root{
+      --primary: #0b6b5b; /* placeholder: cambia por color de tu logo */
+      --accent: #f2b33d;  /* placeholder */
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --maxw: 1000px;
+      --radius: 12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background:#f7f7f8;
+      -webkit-font-smoothing:antialiased;
+    }
+    .container{max-width:var(--maxw);margin:28px auto;padding:20px;}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{
+      width:72px;height:72px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#0f9a86);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px;
+    }
+    h1{font-size:24px;margin:0}
+    p.lead{margin:6px 0 0;color:var(--muted)}
+    nav.lang{margin-left:auto}
+    .btn{
+      display:inline-flex;gap:8px;align-items:center;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600;
+    }
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-ghost{background:transparent;border:1px solid #e6e6e9;color:var(--text)}
+    main{margin-top:20px}
+    .card{background:#fff;border-radius:var(--radius);padding:18px;margin-bottom:16px;box-shadow:0 6px 18px rgba(12,20,30,0.06)}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    @media (max-width:880px){.grid{grid-template-columns:1fr}}
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    ul{padding-left:18px;margin:8px 0;color:var(--text)}
+    .muted{color:var(--muted);font-size:14px}
+    .location{font-size:15px}
+    .gallery{display:flex;gap:8px;flex-wrap:wrap}
+    .thumb{flex:1 1 140px;height:90px;background:#eef2f3;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px}
+    form .row{display:flex;gap:8px;margin-bottom:10px}
+    form input, form select, form textarea{
+      width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e9;font-size:14px;
+    }
+    .footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;padding-top:14px;border-top:1px solid #eef2f3}
+    .whatsapp-fixed{
+      position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;border-radius:50%;width:64px;height:64px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 8px 20px rgba(2,6,23,0.2);z-index:999;
+    }
+    .lang-toggle{display:flex;gap:8px}
+    .notice{background:linear-gradient(90deg,#fff, #fcfcfc);padding:10px;border-radius:10px;margin-bottom:16px;color:var(--muted);font-size:14px}
+    small.caption{display:block;color:var(--muted);margin-top:8px}
+    footer.small{font-size:13px;color:var(--muted);margin-top:20px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="container" id="page">
+    <header>
+      <div class="logo" id="logo">VR</div>
+      <div>
+        <h1 id="title-es">Viajero Rent Car</h1>
+        <p class="lead" id="slogan-es">Tu viaje, tu ritmo — Alquiler de vehículos en La Romana</p>
+        <p class="muted">WhatsApp: <strong id="phone">+1 809 490 3263</strong></p>
+      </div>
+
+      <nav class="lang">
+        <div class="lang-toggle">
+          <button class="btn btn-ghost" id="btn-es" onclick="setLang('es')">ES</button>
+          <button class="btn btn-primary" id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="grid">
+        <div>
+          <div class="card">
+            <div class="section-title">
+              <h2 id="h-about-es">¿Quiénes somos?</h2>
+              <h2 id="h-about-en" style="display:none">Who we are</h2>
+            </div>
+            <p id="about-es">Viajero Rent Car ofrece alquiler de vehículos para turismo y transporte local. Reserva fácil por WhatsApp, servicio de recogida en aeropuerto y atención en español e inglés.</p>
+            <p id="about-en" style="display:none">Viajero Rent Car offers vehicle rentals for tourism and local transport. Easy reservation via WhatsApp, airport pickup service, and support in Spanish and English.</p>
+
+            <div style="margin-top:14px;">
+              <h3 id="h-services-es">Servicios</h3>
+              <h3 id="h-services-en" style="display:none">Services</h3>
+              <ul>
+                <li id="s1-es">Alquiler por días</li>
+                <li id="s2-es">Recogida en aeropuerto (bajo petición)</li>
+                <li id="s3-es">Asistencia básica en ruta</li>
+
+                <li id="s1-en" style="display:none">Daily rentals</li>
+                <li id="s2-en" style="display:none">Airport pickup (on request)</li>
+                <li id="s3-en" style="display:none">Basic roadside assistance</li>
+              </ul>
+            </div>
+
+            <div style="margin-top:12px;">
+              <h3 id="h-reqs-es">Requisitos</h3>
+              <h3 id="h-reqs-en" style="display:none">Requirements</h3>
+              <ul>
+                <li id="r1-es">Licencia vigente</li>
+                <li id="r2-es">Cédula o pasaporte</li>
+                <li id="r3-es">Depósito</li>
+
+                <li id="r1-en" style="display:none">Valid driver's license</li>
+                <li id="r2-en" style="display:none">ID card or passport</li>
+                <li id="r3-en" style="display:none">Deposit</li>
+              </ul>
+            </div>
+
+            <div style="margin-top:12px;">
+              <h3 id="h-loc-es">Ubicación</h3>
+              <h3 id="h-loc-en" style="display:none">Location</h3>
+              <p class="location" id="loc-es">La Romana, Calle de los Maestros, al lado de la peluquería El Menor Brackets.</p>
+              <p class="location" id="loc-en" style="display:none">La Romana, Calle de los Maestros, next to El Menor Brackets hair salon.</p>
+              <small class="caption">Mapa: reemplaza el enlace por tu Google Maps si lo deseas.</small>
+              <div style="margin-top:8px">
+                <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=La+Romana+Calle+de+los+Maestros" target="_blank">Ver en Google Maps</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title">
+              <h3 id="h-gallery-es">Fotos de los autos</h3>
+              <h3 id="h-gallery-en" style="display:none">Car photos</h3>
+            </div>
+            <p class="muted" id="gallery-note-es">Espacio reservado: sube tus fotos y reemplaza las imágenes.</p>
+            <p class="muted" id="gallery-note-en" style="display:none">Placeholder area: upload your photos and replace these images.</p>
+            <div class="gallery" id="gallery">
+              <div class="thumb">Foto 1</div>
+              <div class="thumb">Foto 2</div>
+              <div class="thumb">Foto 3</div>
+              <div class="thumb">Foto 4</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title">
+              <h3 id="h-reserve-es">Reservas</h3>
+              <h3 id="h-reserve-en" style="display:none">Reservations</h3>
+            </div>
+
+            <p class="muted" id="reserve-note-es">Rellena el formulario y pulsa "Reservar por WhatsApp" — enviamos todo directo al número.</p>
+            <p class="muted" id="reserve-note-en" style="display:none">Fill the form and click "Reserve via WhatsApp" — we will send everything directly to the number.</p>
+
+            <form id="reserve-form" onsubmit="reserveViaWhats(event)">
+              <div class="row">
+                <input required id="name" placeholder="Nombre / Name" />
+                <input required id="phoneInput" placeholder="Teléfono / Phone" />
+              </div>
+
+              <div class="row">
+                <select id="carModel" required>
+                  <option value="" disabled selected>Selecciona vehículo / Choose vehicle</option>
+                  <option>Sedan - Económico</option>
+                  <option>SUV - Familiar</option>
+                  <option>Pick-up</option>
+                </select>
+              </div>
+
+              <div class="row">
+                <input type="date" id="startDate" required />
+                <input type="date" id="endDate" required />
+              </div>
+
+              <div class="row">
+                <textarea id="notes" placeholder="Comentarios / Comments (recogida en aeropuerto, etc.)" rows="3"></textarea>
+              </div>
+
+              <div style="display:flex;gap:10px;align-items:center;">
+                <button class="btn btn-primary" type="submit" id="reserveBtn">Reservar por WhatsApp</button>
+                <small class="muted">O llama: <strong>+1 809 490 3263</strong></small>
+              </div>
+
+            </form>
+            <small class="caption">Requisitos: licencia vigente, cédula/pasaporte y depósito al recoger.</small>
+          </div>
+
+          <div class="card">
+            <h3 id="h-auto-msg-es">Mensaje automático</h3>
+            <h3 id="h-auto-msg-en" style="display:none">Automatic message</h3>
+            <p class="muted" id="auto-desc-es">Si quieres, activamos un mensaje automático prellenado que el cliente solo confirma en WhatsApp.</p>
+            <p class="muted" id="auto-desc-en" style="display:none">We can set a pre-filled message so the client only confirms it on WhatsApp.</p>
+            <small class="caption">Ejemplo (ES): "Hola, quiero reservar un SUV del 20/11 al 25/11. Nombre: Juan Pérez. Tel: 8xx-xxx-xxxx."</small>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <h3 id="h-contact-es">Contacto rápido</h3>
+            <h3 id="h-contact-en" style="display:none">Quick contact</h3>
+            <p class="muted">WhatsApp directo:</p>
+            <p><strong id="phone2">+1 809 490 3263</strong></p>
+
+            <div style="margin-top:12px;">
+              <h4 id="h-hours-es">Horario</h4>
+              <h4 id="h-hours-en" style="display:none">Hours</h4>
+              <p class="muted">Lun - Dom: 8:00am - 8:00pm</p>
+            </div>
+
+            <div style="margin-top:12px;">
+              <h4 id="h-footer-reqs-es">Requisitos</h4>
+              <h4 id="h-footer-reqs-en" style="display:none">Requirements</h4>
+              <ul>
+                <li>Licencia vigente</li>
+                <li>Cédula o pasaporte</li>
+                <li>Depósito al retirar</li>
+              </ul>
+            </div>
+
+            <div style="margin-top:10px;">
+              <a class="btn btn-primary" href="#" id="callBtn" onclick="window.location.href='tel:+18094903263'">Llamar ahora</a>
+              <a class="btn btn-ghost" href="#" style="margin-left:8px" onclick="openWhatsPrefilled()">WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 id="h-languages-es">Idiomas</h4>
+            <h4 id="h-languages-en" style="display:none">Languages</h4>
+            <p class="muted" id="lang-note-es">Atención en Español y English.</p>
+            <p class="muted" id="lang-note-en" style="display:none">Support in Spanish and English.</p>
+          </div>
+
+          <div class="card">
+            <h4 id="h-policy-es">Política</h4>
+            <h4 id="h-policy-en" style="display:none">Policy</h4>
+            <p class="muted">Documentos requeridos al recoger el vehículo. Revisa términos al confirmar reserva.</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="notice card">
+        <strong id="notice-es">Antes de generar el código final, última pregunta:</strong>
+        <span id="notice-more-es">¿Quieres que incluya un botón de WhatsApp con mensaje automático prellenado?</span>
+        <strong id="notice-en" style="display:none">Before generating final code, one last question:</strong>
+        <span id="notice-more-en" style="display:none">Do you want a WhatsApp button with a prefilled automatic message?</span>
+      </div>
+
+      <footer class="card footer">
+        <div>
+          <strong>Viajero Rent Car</strong>
+          <div class="muted">La Romana — +1 809 490 3263</div>
+        </div>
+        <div class="muted">Síguenos: (opcional) Instagram · Facebook · TikTok</div>
+      </footer>
+
+      <footer class="small">
+        © <span id="year"></span> Viajero Rent Car · All rights reserved
+      </footer>
+    </main>
+  </div>
+
+  <!-- Fixed WhatsApp Button -->
+  <a id="whatsFixed" class="whatsapp-fixed" href="#" title="WhatsApp">
+    🟢
+  </a>
+
+  <script>
+    // Basic runtime behavior: language toggle, whatsapp links, reservation -> whatsapp
+    const phone = '+18094903263'; // formato internacional sin espacios
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Language handling
+    function setLang(lang){
+      const es = lang === 'es';
+      // Toggle elements with ids ending in -es vs -en
+      const elementsEs = document.querySelectorAll('[id$="-es"]');
+      const elementsEn = document.querySelectorAll('[id$="-en"]');
+      elementsEs.forEach(el => el.style.display = es ? '' : 'none');
+      elementsEn.forEach(el => el.style.display = es ? 'none' : '');
+      // Buttons
+      document.getElementById('btn-es').classList.toggle('btn-primary', es);
+      document.getElementById('btn-en').classList.toggle('btn-primary', !es);
+      // Update WhatsApp prefill behavior
+      updateWhatsHref(es ? 'es' : 'en');
+    }
+
+    // Prepare initial state (default: Spanish)
+    setLang('es');
+
+    // Update fixed WhatsApp href
+    function updateWhatsHref(lang){
+      const msg = (lang==='es')
+        ? encodeURIComponent('Hola! Quisiera información/reservar un vehículo. Fecha inicio: ___ Fecha fin: ___. Nombre: ___ .')
+        : encodeURIComponent('Hello! I would like information/to reserve a vehicle. Start date: ___ End date: ___. Name: ___ .');
+      const href = `https://wa.me/${phone.replace('+','')}?text=${msg}`;
+      document.getElementById('whatsFixed').href = href;
+    }
+
+    function openWhatsPrefilled(){
+      // open in current language
+      const lang = document.getElementById('btn-es').classList.contains('btn-primary') ? 'es' : 'en';
+      updateWhatsHref(lang);
+      window.open(document.getElementById('whatsFixed').href, '_blank');
+    }
+
+    // Reservation form -> opens WhatsApp with filled message
+    function reserveViaWhats(e){
+      e.preventDefault();
+      const lang = document.getElementById('btn-es').classList.contains('btn-primary') ? 'es' : 'en';
+      const name = document.getElementById('name').value || '---';
+      const phoneClient = document.getElementById('phoneInput').value || '---';
+      const model = document.getElementById('carModel').value || '---';
+      const start = document.getElementById('startDate').value || '---';
+      const end = document.getElementById('endDate').value || '---';
+      const notes = document.getElementById('notes').value || '---';
+
+      let message;
+      if(lang==='es'){
+        message = `Hola, quiero reservar un vehículo.\nNombre: ${name}\nTeléfono: ${phoneClient}\nVehículo: ${model}\nDesde: ${start}\nHasta: ${end}\nNotas: ${notes}\nRequisitos confirmados: licencia vigente, cédula/pasaporte y depósito.`;
+      } else {
+        message = `Hello, I want to reserve a vehicle.\nName: ${name}\nPhone: ${phoneClient}\nVehicle: ${model}\nFrom: ${start}\nTo: ${end}\nNotes: ${notes}\nI confirm requirements: valid license, ID/passport and deposit.`;
+      }
+      const href = `https://wa.me/${phone.replace('+','')}?text=${encodeURIComponent(message)}`;
+      window.open(href, '_blank');
+    }
+
+    // Set initial whatsapp href
+    updateWhatsHref('es');
+
+    // Allow quick-click call button to work on mobile
+    document.getElementById('callBtn').addEventListener('click', function(e){ /* handled by href */ });
+
+    // Note: replace logo and gallery images manually in HTML when ready.
+  </script>
+</body>
+</html>
